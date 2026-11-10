@@ -125,8 +125,8 @@ do
                         importeExtras += 1.0;
                     }
                     break;
-                default:
-                    Console.WriteLine("Opción no válida");
+                case 4:
+                    Console.WriteLine("Saliendo ...");
                     break;
             }   
                 
@@ -154,7 +154,7 @@ do
             suplemento = 3;
             do
             {
-                Console.Write("Dirección de entrega:");
+                Console.Write("Dirección de entrega: ");
                 direccion = (Console.ReadLine() ?? "").Trim();
 
                 if (direccion == "")
@@ -264,7 +264,11 @@ do
          
     } else if (opcion == 3)
     {
-        
+        // Fase 10: despedida
+        Console.WriteLine("¡Hasta pronto! Alquileres: " + operacionesCobradas + " | Ingresos: " + cobro.ToString("F2") + " €");
+    } 
+    else
+    {
+        Console.WriteLine("Opción no válida");
     }
-
 } while(opcion != 3);
