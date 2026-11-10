@@ -247,6 +247,24 @@ do
         Console.WriteLine("Total: " + total.ToString("F2") + " €");
         Console.WriteLine("Entregado: " + dineroEntregado.ToString("F2") + " €");
         Console.WriteLine("Cambio: " + cambio.ToString("F2") + " €");
+    } else if (opcion == 2)
+    {
+        if(operacionesCobradas == 0)
+        {
+            Console.WriteLine("Todavía no hay alquileres cobrados.");
+        }
+        else
+        {
+            double importeMedio = cobro / operacionesCobradas;
+            Console.WriteLine("Alquileres: " + operacionesCobradas);
+            Console.WriteLine("Recaudación: " + cobro.ToString("F2") + " €");
+            Console.WriteLine("Importe medio: " + importeMedio.ToString("F2") + " €");
+            Console.WriteLine("Alquiler más caro: " + importeMaximo.ToString("F2") + " € (" + clienteImporteMaximo + ")");
+        }
+         
+    } else if (opcion == 3)
+    {
+        
     }
 
 } while(opcion != 3);
