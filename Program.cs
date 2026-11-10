@@ -207,7 +207,46 @@ do
             clienteImporteMaximo = nombre;
         }
         
-        
+        //Fase 8: ticket
+        Console.WriteLine("TICKET Nº " + operacionesCobradas);
+        Console.WriteLine("Cliente" + nombre);
+        Console.WriteLine("Producto" + nomProducto);
+
+        if (extras == 0)
+        {
+            Console.WriteLine("Extras: ninguno");
+        }
+        else
+        {
+            if (limpieza)
+            {
+                Console.WriteLine("Extra: limpieza del cartucho");
+            }
+            if (mando)
+            {
+                Console.WriteLine("Extra: mando adicional");
+            }
+            if (manual)
+            {
+                Console.WriteLine("Extra: manual y caja");
+            }
+        }
+
+        if(entrega == 1)
+        {
+            Console.WriteLine("Recogida en tienda");
+        }
+        else
+        {
+            Console.WriteLine("Entrega a domicilio en; " + direccion);
+        } 
+        Console.WriteLine("Precio principal: " + costePrincipal.ToString("F2") + " €");
+        Console.WriteLine("Extras: " + extras.ToString("F2") + " €");
+        Console.WriteLine("Descuento: " + descuento.ToString("F2") + " €");
+        Console.WriteLine("Suplemento: " + suplemento.ToString("F2") + " €");
+        Console.WriteLine("Total: " + total.ToString("F2") + " €");
+        Console.WriteLine("Entregado: " + dineroEntregado.ToString("F2") + " €");
+        Console.WriteLine("Cambio: " + cambio.ToString("F2") + " €");
     }
 
 } while(opcion != 3);
