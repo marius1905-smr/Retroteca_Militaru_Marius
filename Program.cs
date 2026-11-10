@@ -166,6 +166,48 @@ do
             } while (direccion == "");
         }
 
+        // Fase 5: cálculo (descuento del 10% si el subtotal llega a 10)
+
+        double subtotal = costePrincipal + importeExtras;
+        double descuento = 0;
+        if (subtotal >= 10)
+        {
+            descuento = subtotal * 0.1;
+            
+        }
+        double total = subtotal - descuento + suplemento;
+        if (total < 0)
+        {
+            total = 0;
+        }
+
+        Console.WriteLine("Subtotal: " + subtotal.ToString("F2") + " €");
+        Console.WriteLine("Descuento: " + descuento.ToString("F2") + " €");
+        Console.WriteLine("Suplemento: " + suplemento.ToString("F2") + " €");
+        Console.WriteLine("Total: " + total.ToString("F2") + " €");
+
+        // Fase 6: pago y cambio (se pide una vez y se repite mientras no llegue)
+
+        Console.WriteLine("Dinero entregado: ");
+        double dineroEntregado = double.Parse(Console.ReadLine());
+        while (dineroEntregado < total)
+        {
+            Console.WriteLine("Pago insuficiente. Faltan " + (total - dineroEntregado).ToString("F2") + " €");
+            Console.WriteLine("Dinero entregado: ");
+            dineroEntregado = double.Parse(Console.ReadLine());
+        }
+        double cambio = dineroEntregado - total;
+
+        //Fase 7: contabilizar (una sola vez)
+        operacionesCobradas++;
+        cobro += total;
+        if (operacionesCobradas == 1 || total > importeMaximo)
+        {
+            importeMaximo = total;
+            clienteImporteMaximo = nombre;
+        }
+        
+        
     }
 
 } while(opcion != 3);
