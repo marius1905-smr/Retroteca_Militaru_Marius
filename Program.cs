@@ -15,7 +15,7 @@ do
     Console.WriteLine("1. Nuevo alquiler");
     Console.WriteLine("2. Consultar caja");
     Console.WriteLine("3. Salir");
-    opcion = int.Parse(Console.ReadLine());
+    opcion = int.Parse(Console.ReadLine()!);
 
     if(opcion == 1)
     {
@@ -41,7 +41,7 @@ do
             Console.WriteLine("1. Juego 8/16 bits (3,50 €)");
             Console.WriteLine("2. Juego 32/64 bits (5,00 €)");
             Console.WriteLine("3. Game Boy con juego (7,00 €)");
-            producto = int.Parse(Console.ReadLine());
+            producto = int.Parse(Console.ReadLine()!);
 
             if(producto < 1 || producto > 3)
             {
@@ -73,7 +73,7 @@ do
         //Fase 3: extras (cada uno solo una vez, por eso uso bool)
         bool limpieza = false;
         bool mando = false;
-        bool manual = true;
+        bool manual = false;
         int extras = 0;
         double importeExtras = 0;
         
@@ -85,7 +85,7 @@ do
             Console.WriteLine("2. Mando adicional (2,50€)");
             Console.WriteLine("3. Manual y caja (1,00€)");
             Console.WriteLine("4. Terminar");
-            opcionExtra = int.Parse(Console.ReadLine());
+            opcionExtra = int.Parse(Console.ReadLine()!);
 
             switch (opcionExtra)
             {
@@ -128,6 +128,9 @@ do
                 case 4:
                     Console.WriteLine("Saliendo ...");
                     break;
+                default:
+                    Console.WriteLine("Opción no válida");
+                    break;
             }   
                 
         } while (opcionExtra != 4);
@@ -139,7 +142,7 @@ do
         {
             Console.WriteLine("1. Recogida en tienda");
             Console.WriteLine("2. Entrega a domicilio (+3,00€)");
-            entrega = int.Parse(Console.ReadLine());
+            entrega = int.Parse(Console.ReadLine()!);
 
             if(entrega < 1 || entrega > 2)
             {
@@ -189,12 +192,12 @@ do
         // Fase 6: pago y cambio (se pide una vez y se repite mientras no llegue)
 
         Console.WriteLine("Dinero entregado: ");
-        double dineroEntregado = double.Parse(Console.ReadLine());
+        double dineroEntregado = double.Parse(Console.ReadLine()!);
         while (dineroEntregado < total)
         {
             Console.WriteLine("Pago insuficiente. Faltan " + (total - dineroEntregado).ToString("F2") + " €");
             Console.WriteLine("Dinero entregado: ");
-            dineroEntregado = double.Parse(Console.ReadLine());
+            dineroEntregado = double.Parse(Console.ReadLine()!);
         }
         double cambio = dineroEntregado - total;
 
@@ -209,8 +212,8 @@ do
         
         //Fase 8: ticket
         Console.WriteLine("TICKET Nº " + operacionesCobradas);
-        Console.WriteLine("Cliente" + nombre);
-        Console.WriteLine("Producto" + nomProducto);
+        Console.WriteLine("Cliente: " + nombre);
+        Console.WriteLine("Producto: " + nomProducto);
 
         if (extras == 0)
         {
@@ -241,7 +244,7 @@ do
             Console.WriteLine("Entrega a domicilio en; " + direccion);
         } 
         Console.WriteLine("Precio principal: " + costePrincipal.ToString("F2") + " €");
-        Console.WriteLine("Extras: " + extras.ToString("F2") + " €");
+        Console.WriteLine("Extras: " + importeExtras.ToString("F2") + " €");
         Console.WriteLine("Descuento: " + descuento.ToString("F2") + " €");
         Console.WriteLine("Suplemento: " + suplemento.ToString("F2") + " €");
         Console.WriteLine("Total: " + total.ToString("F2") + " €");
