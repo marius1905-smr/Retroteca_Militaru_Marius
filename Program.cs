@@ -70,10 +70,102 @@ do
   
         }
 
+        //Fase 3: extras (cada uno solo una vez, por eso uso bool)
+        bool limpieza = false;
+        bool mando = false;
+        bool manual = true;
+        int extras = 0;
+        double importeExtras = 0;
+        
+        int opcionExtra;
+        do
+        {
+            Console.WriteLine($"Extras; {extras} | Importe: {importeExtras.ToString("F2")}€ ");
+            Console.WriteLine("1. Limpieza del cartucho (1,50€)");
+            Console.WriteLine("2. Mando adicional (2,50€)");
+            Console.WriteLine("3. Manual y caja (1,00€)");
+            Console.WriteLine("4. Terminar");
+            opcionExtra = int.Parse(Console.ReadLine());
 
+            switch (opcionExtra)
+            {
+                case 1:
+                    if (limpieza)
+                    {
+                        Console.WriteLine("Ya has añadido la limpieza");
+                    }
+                    else
+                    {
+                        limpieza = true;
+                        extras++;
+                        importeExtras += 1.5;
+                    }
+                    break;
+                case 2:
+                    if (mando)
+                    {
+                        Console.WriteLine("Ya has añadido el mando");
+                    }
+                    else
+                    {
+                        mando = true;
+                        extras++;
+                        importeExtras += 2.5;
+                    }
+                    break;
+                case 3:
+                    if (manual)
+                    {
+                        Console.WriteLine("Ya has añadido el manual");
+                    }
+                    else
+                    {
+                        manual = true;
+                        extras++;
+                        importeExtras += 1.0;
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Opción no válida");
+                    break;
+            }   
+                
+        } while (opcionExtra != 4);
 
+        //Fase 4: recogida o domicilio
 
+        int entrega;
+        do
+        {
+            Console.WriteLine("1. Recogida en tienda");
+            Console.WriteLine("2. Entrega a domicilio (+3,00€)");
+            entrega = int.Parse(Console.ReadLine());
+
+            if(entrega < 1 || entrega > 2)
+            {
+                Console.WriteLine("Opción no válida");
+            }
+        } while (entrega < 1 || entrega > 2);
+
+        double suplemento = 0;
+        string direccion = "";
+        if (entrega == 2)
+        {
+            suplemento = 3;
+            do
+            {
+                Console.Write("Dirección de entrega:");
+                direccion = (Console.ReadLine() ?? "").Trim();
+
+                if (direccion == "")
+                {
+                    Console.WriteLine("La dirección no puede estar vacia");
+
+                }
+
+            } while (direccion == "");
+        }
 
     }
 
-}
+} while(opcion != 3);
